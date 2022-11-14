@@ -10,22 +10,19 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
 // An array for each employee card to be added to
-const employee = [];
+const employees = [];
 
 // Prompted questions for the user in CL
-function addTeamMember(data) {
+function addTeamManager(data) {
     inquirer
         .prompt([
-            {
-                type: "list",
-                name: "role",
-                message: "What is your role?",
-                choices: ["Manager", "Engineer", "Intern"],
-            },
+            // {
+            //     message: console.log("Press enter to get started")
+            // },
             {
                 type: "input",
                 name: "name",
-                message: "What is your name?",
+                message: "Team Manager's name:",
             },
             {
                 type: "input",
@@ -54,30 +51,8 @@ function addTeamMember(data) {
                 type: "input",
                 name: "officeNumber",
                 message: "What is your office number?",
-                when: (data) => data.role === "Manager",
-            },
-            // Engineer Selection
-            {
-                type: "input",
-                name: "github",
-                message: "What is your GitHub username?",
-                when: (data) => data.role === "Engineer",
-            },
-            // Intern Selection
-            {
-                type: "input",
-                name: "school",
-                message: "What school do you attend?",
-                when: (data) => data.role === "Intern",
-            },
-            {
-                type: "list",
-                name: "addAnother",
-                message: "Who you like to add another employee?",
-                choices: ["Yes", "No"],
-            },
-        ])
-        .then(function (data) {
+            }])
+        .then((data) => {
             if (data.role === "Manager") {
                 const manager = new Manager(
                     data.name,
@@ -86,39 +61,98 @@ function addTeamMember(data) {
                     data.officeNumber
                 );
                 console.log(manager);
-                employee.push(manager);
-            }
-            if (data.role === "Engineer") {
-                const engineer = new Engineer(
-                    data.name,
-                    data.id,
-                    data.email,
-                    data.github
-                );
-                console.log(engineer);
-                employee.push(engineer);
-            }
-            if (data.role === "Intern") {
-                const intern = new Intern(
-                    data.name,
-                    data.id,
-                    data.email,
-                    data.school
-                );
-                console.log(intern);    
-                employee.push(intern);
-            }
-            if (data.addAnother === "Yes") {
-                addTeamMember();
-              } else {
-            // Writes data (users input) to the HTML
-            fs.writeFile("./dist/output.html", generateTeam(employee), (err) => {
-                if (err) {
-                    return console.log(err);
+                employees.push(manager);
+                
+            } addTeamMember();
+        });
+
+    function addTeamMember(data) {
+        inquirer
+            .prompt([
+                {
+                    type: "list",
+                    name: "addEmployee",
+                    message: "Would you like to add an Engineer or Intern?",
+                    choices: ["Intern", "Engineer", "I am finished"],
+                },
+                {
+                    type: "input",
+                    name: "name",
+                    message: "What is the team member's name?",
+                },
+                {
+                    type: "input",
+                    name: "id",
+                    message: "What is the team member's employee I.D?",
+                    validate: function (input) {
+                        if (!input) {
+                            console.log('Please enter a valid I.D number');
+                            return false;
+                        } else if (isNaN(parseInt(input))) {
+                            console.log(' Please enter a number')
+                            return false;
+                        }
+                        return true;
+                    }
+                },
+                {
+                    type: "input",
+                    name: "email",
+                    message: "What is the team member's email address?",
+                },
+                // Engineer Selection
+                {
+                    type: "input",
+                    name: "github",
+                    message: "What is the team member's GitHub username?",
+                    when: (data) => data.addEmployee === "Engineer",
+                },
+                // Intern Selection
+                {
+                    type: "input",
+                    name: "school",
+                    message: "What school does the team member attend?",
+                    when: (data) => data.addEmployee === "Intern",
+                },
+
+            ]).then(function (data) {
+
+                if (data.role === "Engineer") {
+                    const engineer = new Engineer(
+                        data.name,
+                        data.id,
+                        data.email,
+                        data.github
+                    );
+                    console.log(engineer);
+                    employees.push(engineer);
+                    addTeamMember();
                 }
-                console.log("Team cards generated successfully")
+                if (data.role === "Intern") {
+                    const intern = new Intern(
+                        data.name,
+                        data.id,
+                        data.email,
+                        data.school
+                    );
+                    console.log(intern);
+                    employees.push(intern);
+                    addTeamMember();
+                }
+
+                if (data.addEmployee === "I am finished") {
+              
+                    // Writes data (users input) to the HTML
+                    fs.writeFile("./dist/output.html", generateTeam(employees), (err) => {
+                        if (err) {
+                            return console.log(err);
+                        } 
+                            console.log("Team cards generated successfully");
+                        });
+                }
             });
-        }});
+
+    }
 }
 
-addTeamMember();
+addTeamManager();
