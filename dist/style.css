@@ -1,0 +1,36 @@
+/* background image */
+body {
+    background-image: url("../dist/media/Background.jpg");
+    /* <a href="https://www.freepik.com/free-vector/combination-circuit-head-shape-artificial-intelligence-moral-electronic-world-illustration_14803707.htm#query=industrial%20engineering&position=41&from_view=keyword">Image by liuzishan</a> on Freepik */
+    background-size: cover;
+    font-family: 'Sono', sans-serif;
+  }
+  
+  /* Jumbotron  */
+  .jumbotron {
+    background-color: #10152f;
+    color: rgb(255, 255, 255);
+    text-shadow: 15px 10px 0.2;
+    border: 1px solid black;
+    background: 0.7;
+  }
+  
+
+  li {
+   list-style: none;
+  }
+
+  .cardHeader {
+    background-color: rgba(89, 99, 102, 0.911);
+    border-radius: 25px;
+  }
+  
+  
+  .employeeCard {
+    margin: 5pX;
+    padding: 15px;    
+    background-color: #ffffff;
+    border: 2px solid black;
+    border-radius: 25px;
+    /* background: transparent; */
+  }
