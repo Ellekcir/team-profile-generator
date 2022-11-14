@@ -85,7 +85,7 @@ function addTeamMember(data) {
                     data.email,
                     data.officeNumber
                 );
-
+                console.log(manager);
                 employee.push(manager);
             }
             if (data.role === "Engineer") {
@@ -95,7 +95,7 @@ function addTeamMember(data) {
                     data.email,
                     data.github
                 );
-
+                console.log(engineer);
                 employee.push(engineer);
             }
             if (data.role === "Intern") {
@@ -105,7 +105,7 @@ function addTeamMember(data) {
                     data.email,
                     data.school
                 );
-
+                console.log(intern);    
                 employee.push(intern);
             }
             if (data.addAnother === "Yes") {
