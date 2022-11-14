@@ -9,6 +9,8 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+const generateTeam = require("./src/templatehtml")
+
 // An array for each employee card to be added to
 const employees = [];
 
@@ -62,7 +64,7 @@ function addTeamManager(data) {
                 );
                 console.log(manager);
                 employees.push(manager);
-                
+
             } addTeamMember();
         });
 
@@ -73,7 +75,7 @@ function addTeamManager(data) {
                     type: "list",
                     name: "addEmployee",
                     message: "Would you like to add an Engineer or Intern?",
-                    choices: ["Intern", "Engineer", "I am finished"],
+                    choices: ["Intern", "Engineer"],
                 },
                 {
                     type: "input",
@@ -114,6 +116,12 @@ function addTeamManager(data) {
                     message: "What school does the team member attend?",
                     when: (data) => data.addEmployee === "Intern",
                 },
+                {
+                    type: "list",
+                    name: "finish",
+                    message: "Would you like to add another employee?",
+                    choices: ["Add another Employee", "Finish"],
+                },
 
             ]).then(function (data) {
 
@@ -124,9 +132,8 @@ function addTeamManager(data) {
                         data.email,
                         data.github
                     );
-                    console.log(engineer);
                     employees.push(engineer);
-                    addTeamMember();
+
                 }
                 if (data.role === "Intern") {
                     const intern = new Intern(
@@ -135,24 +142,25 @@ function addTeamManager(data) {
                         data.email,
                         data.school
                     );
-                    console.log(intern);
                     employees.push(intern);
-                    addTeamMember();
+
                 }
 
-                if (data.addEmployee === "I am finished") {
-              
+
+                if (data.finish !== "Finish") {
+                    addTeamMember();
                     // Writes data (users input) to the HTML
+                } else {
                     fs.writeFile("./dist/output.html", generateTeam(employees), (err) => {
                         if (err) {
                             return console.log(err);
-                        } 
-                            console.log("Team cards generated successfully");
-                        });
+                        }
+                        console.log("Team cards generated successfully");
+                    });
                 }
             });
 
     }
-}
 
+}
 addTeamManager();
