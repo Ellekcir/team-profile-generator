@@ -2,11 +2,11 @@
 const generateTeam = (team) => {
 
     function generateManager(manager) {
-        return `<card class="card col-3 col-sm-12">
+        return `<card class="card col-sm-12 col-md-3 col-lg-3 flex justify-content-center">
     <div class="cardHeader text-center">
         <!-- Name and role -->
         <h2 class="cardName">${manager.name}</h2>
-        <h5 class="cardRole">${manager.getRole()}</h5>
+        <h5 class="cardRole text-success">${manager.getRole()}</h5>
     </div>
     <div class="cardBody text-center">
         <ul class="list-group">
@@ -20,17 +20,17 @@ const generateTeam = (team) => {
     }
 
     function generateEngineer(engineer) {
-        return `<card class="card col-3 col-sm-12">
+        return `<card class="card col-sm-12 col-md-3 col-lg-3 flex justify-content-center">
         <div class="cardHeader text-center">
             <!-- Name and role -->
             <h2 class="cardName">${engineer.name}</h2>
-            <h5 class="cardRole">${engineer.getRole()}</h5>
+            <h5 class="cardRole text-primary">${engineer.getRole()}</h5>
         </div>
         <div class="cardBody text-center">
             <ul class="list-group">
             <!-- Id, Email, OfficeNumber/GitHub/School-->
                 <li class="list-group-item">ID: ${engineer.id}</li>
-                <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}<\a></li>
+                <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()} <\a> </li>
                 <li class="list-group-item">GitHub: <a href="https:\\github.com\${engineer.getGithub()}">${engineer.getGithub()}<\a></li>
             </ul>
         </div>
@@ -38,17 +38,17 @@ const generateTeam = (team) => {
     }
 
     function generateIntern(intern) {
-        return `<card class="card col-3 col-sm-12">
+        return `<card class="card col-sm-12 col-md-3 col-lg-3 flex justify-content-center">
         <div class="cardHeader text-center">
             <!-- Name and role -->
             <h2 class="cardName">${intern.name}</h2>
-            <h5 class="cardRole">${intern.getRole()}</h5>
+            <h5 class="cardRole text-info">${intern.getRole()}</h5>
         </div>
         <div class="cardBody text-center">
             <ul class="list-group">
             <!-- Id, Email, OfficeNumber/GitHub/School-->
                 <li class="list-group-item">ID: ${intern.id}</li>
-                <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}<\a></li>
+                <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}"> ${intern.getEmail()} <\a> </li>
                 <li class="list-group-item">School: ${intern.school}</li>
             </ul>
         </div>

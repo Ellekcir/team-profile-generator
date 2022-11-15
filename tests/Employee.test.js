@@ -72,10 +72,10 @@ describe('Unit test for Employee', () => {
         // same as below 
         // expect(employee.title).toEqual(employeeRole)
     })
-    // FAIL TESTER
-    it('Should return the Employee email', () => {
-        const employeeEmail = "tom@gmail.com";
+    // // FAIL TESTER
+    // it('Should return the Employee email', () => {
+    //     const employeeEmail = "tom@gmail.com";
 
-        expect(employee.getEmail()).toEqual(employeeEmail);
-    })
+    //     expect(employee.getEmail()).toEqual(employeeEmail);
+    // })
 });
