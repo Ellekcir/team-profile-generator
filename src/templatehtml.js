@@ -2,11 +2,11 @@
 const generateTeam = (team) => {
 
     function generateManager(manager) {
-        return `<card class="card employeeCard col-3 d-inline-flex justify-content-center">
+        return `<card class="card col-3 col-sm-12">
     <div class="cardHeader text-center">
         <!-- Name and role -->
         <h2 class="cardName">${manager.name}</h2>
-        <h3 class="cardRole">${manager.getRole()}</h3>
+        <h5 class="cardRole">${manager.getRole()}</h5>
     </div>
     <div class="cardBody text-center">
         <ul class="list-group">
@@ -20,11 +20,11 @@ const generateTeam = (team) => {
     }
 
     function generateEngineer(engineer) {
-        return `                <card class="card employeeCard col-3 d-inline-flex justify-content-center">
+        return `<card class="card col-3 col-sm-12">
         <div class="cardHeader text-center">
             <!-- Name and role -->
             <h2 class="cardName">${engineer.name}</h2>
-            <h3 class="cardRole">${engineer.getRole()}</h3>
+            <h5 class="cardRole">${engineer.getRole()}</h5>
         </div>
         <div class="cardBody text-center">
             <ul class="list-group">
@@ -38,12 +38,11 @@ const generateTeam = (team) => {
     }
 
     function generateIntern(intern) {
-        return `
-        <card class="card employeeCard col-3 d-inline-flex justify-content-center">
+        return `<card class="card col-3 col-sm-12">
         <div class="cardHeader text-center">
             <!-- Name and role -->
             <h2 class="cardName">${intern.name}</h2>
-            <h3 class="cardRole">${intern.getRole()}</h3>
+            <h5 class="cardRole">${intern.getRole()}</h5>
         </div>
         <div class="cardBody text-center">
             <ul class="list-group">
@@ -58,7 +57,7 @@ const generateTeam = (team) => {
 
 
 const html = [];
-
+//console.log(team);
     
 html.push(
     team
@@ -86,7 +85,6 @@ html.push(
   return `
   <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -95,10 +93,8 @@ html.push(
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Alkalami&family=Dancing+Script:wght@500&family=Noto+Sans+Mono:wght@100&family=Sono&family=Syne:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../dist/style.css">
-
     <title> MY TEAM </title>
 </head>
-
 <body>
     <!-- Container for page content -->
     <div class="container-fluid">
@@ -106,7 +102,6 @@ html.push(
         <div class="row">
             <div class="col-12 jumbotron mb-3 team-heading">
                 <h1 class="text-center">MY TEAM </h1>
-
             </div>
         </div>
     <!-- Page content - Employee's Cards-->
@@ -119,7 +114,6 @@ html.push(
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
-
 </html>`;
 };
 
